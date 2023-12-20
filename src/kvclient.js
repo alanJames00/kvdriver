@@ -25,12 +25,34 @@ class KVClient {
 
             const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.AccountID}/storage/kv/namespaces`, { headers: this.headersObj });
             console.log(resp.data.success);
-            
+
             // returns the success status of validate credentials
             return resp.data.success;
         }
         catch(err) {
             console.log(err);
+        }
+    }
+
+    // List Namespaces
+
+    async ListNameSpaces() {
+        const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.AccountID}/storage/kv/namespaces`, { headers: this.headersObj });
+        console.log(resp.data.result);
+
+        // returns an array of all the namespaces under account id
+        return resp.data.result;
+    }
+
+    async CreateNameSpace({ nameSpaceTitle }) {
+
+        try {
+            
+
+        }
+        catch(err){
+            console.log(err);
+            return err;
         }
     }
 
