@@ -14,10 +14,10 @@ const axios = require('axios');
             */
 
             // init the constructor
-            constructor({ email, globalApiKey, AccountID }) {
+            constructor({ email, globalApiKey, accountID }) {
                 this.email = email;
                 this.globalApiKey = globalApiKey;
-                this.AccountID = AccountID;
+                this.accountID = accountID;
 
                 // create the headerObj
                 this.headersObj = {
@@ -41,7 +41,7 @@ const axios = require('axios');
 
                 try{
 
-                    const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.AccountID}/storage/kv/namespaces`, { headers: this.headersObj });
+                    const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces`, { headers: this.headersObj });
                     console.log(resp.data.success);
 
                     // returns the success status of validate credentials
@@ -55,7 +55,7 @@ const axios = require('axios');
             // List Namespaces
 
             async ListNameSpaces() {
-                const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.AccountID}/storage/kv/namespaces`, { headers: this.headersObj });
+                const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces`, { headers: this.headersObj });
                 console.log(resp.data.result);
 
                 // returns an array of all the namespaces under account id
@@ -66,7 +66,8 @@ const axios = require('axios');
 
                 try {
                     
-                    const resp = await axios.post(url, {
+                    const resp = await axios.post(`https://api.cloudflare.com/client/v4
+                    /accounts/${this.accountID}/storage/kv/namespaces`, {
                         title: nameSpaceTitle,
                     }, { headers: this.headersObj });
                 }
