@@ -135,6 +135,21 @@ const axios = require('axios');
                     return err.response.data;
                 }
             }
+
+            async deleteKeyValue(namespace_id, key) {
+                try {
+
+                    const resp = await axios.delete(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/values/${key}`, 
+                    
+                    {headers: this.headersObj})
+
+                    // returns an array of all the keys in the kv
+                    return resp.data;
+                }
+                catch(err) {
+                    return err.response.data;
+                }   
+            }
         }
 
 module.exports = KVClient;
