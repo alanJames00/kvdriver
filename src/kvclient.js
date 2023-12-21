@@ -56,8 +56,7 @@ const axios = require('axios');
 
             async ListNameSpaces() {
                 const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces`, { headers: this.headersObj });
-                console.log(resp.data.result);
-
+                
                 // returns an array of all the namespaces under account id
                 return resp.data.result;
             }
@@ -66,14 +65,27 @@ const axios = require('axios');
 
                 try {
                     
-                    const resp = await axios.post(`https://api.cloudflare.com/client/v4
-                    /accounts/${this.accountID}/storage/kv/namespaces`, {
+                    const resp = await axios.post(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces`, {
                         title: nameSpaceTitle,
                     }, { headers: this.headersObj });
+
+                    if(resp.data.success == true) {
+
+                        return resp.data.result;
+                    }
+                    else {
+                        return {
+                            error: 'Failed To Create Namespaces',
+                            errors: resp.data.errors
+                        }
+                    }
+                    
                 }
                 catch(err){
-                    console.log(err);
-                    return err;
+                    return {
+                        error: 'Failed To Create Namespaces',
+                        cause: 'Missing Or Invalid Credentials'
+                    }
                 }
             }
 
