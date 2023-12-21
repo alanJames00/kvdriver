@@ -75,7 +75,7 @@ const axios = require('axios');
                     }
                     else {
                         return {
-                            error: 'Failed To Create Namespaces',
+                            error: 'Failed To Create Namespace',
                             errors: resp.data.errors
                         }
                     }
@@ -83,9 +83,27 @@ const axios = require('axios');
                 }
                 catch(err){
                     return {
-                        error: 'Failed To Create Namespaces',
+                        error: 'Failed To Create Namespace',
                         cause: 'Missing Or Invalid Credentials'
                     }
+                }
+            }
+
+            async putValue(namespace_id, key, value) {
+
+                try {
+
+                    const resp = await axios.put(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/bulk`, 
+                    [ 
+                        { key: key,
+                        value: value }
+                    ],
+                    {headers: this.headersObj})
+
+                    return resp.data;
+                }
+                catch(err) {
+                    return err.response.data;
                 }
             }
 
