@@ -120,6 +120,21 @@ const axios = require('axios');
                     return err.response.data;
                 }
             }
+
+            async listNamespaceKeys(namespace_id) {
+                try {
+
+                    const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/keys`, 
+                    
+                    {headers: this.headersObj})
+
+                    // returns an array of all the keys in the kv
+                    return resp.data.result;
+                }
+                catch(err) {
+                    return err.response.data;
+                }
+            }
         }
 
 module.exports = KVClient;
