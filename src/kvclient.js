@@ -89,7 +89,7 @@ const axios = require('axios');
                 }
             }
 
-            async putValue(namespace_id, key, value) {
+            async putKeyValue(namespace_id, key, value) {
 
                 try {
 
@@ -107,6 +107,19 @@ const axios = require('axios');
                 }
             }
 
+            async getValue(namespace_id, key) {
+                try {
+
+                    const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/values/${key}`, 
+                    
+                    {headers: this.headersObj})
+
+                    return resp.data;
+                }
+                catch(err) {
+                    return err.response.data;
+                }
+            }
         }
 
 module.exports = KVClient;
