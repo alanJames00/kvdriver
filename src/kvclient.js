@@ -61,7 +61,7 @@ const axios = require('axios');
                 return resp.data.result;
             }
 
-            async CreateNameSpace({ nameSpaceTitle }) {
+            async CreateNameSpace(nameSpaceTitle) {
 
                 try {
                     
@@ -107,6 +107,22 @@ const axios = require('axios');
                 catch(err) {
                     return err.response.data;
                 }
+            }
+
+            async putKeyValueBulk(namespace_id, keyValueArr) {
+
+                try {
+                    
+                    const resp = await axios.put(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/bulk`, 
+                    keyValueArr,
+                    {headers: this.headersObj})
+
+                    return resp.data;
+                }
+                catch(err) {
+                    return err.response.data;
+                }
+
             }
 
             async getValue(namespace_id, key) {
