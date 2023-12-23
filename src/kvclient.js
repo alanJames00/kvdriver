@@ -77,7 +77,7 @@ const axios = require('axios');
                         return {
                             error: 'Failed To Create Namespace',
                             errors: resp.data.errors
-                        }
+                        };
                     }
                     
                 }
@@ -85,22 +85,24 @@ const axios = require('axios');
                     return {
                         error: 'Failed To Create Namespace',
                         cause: 'Missing Or Invalid Credentials'
-                    }
+                    };
                 }
             }
 
             async putKeyValue(namespace_id, key, value, metadata) {
 
-                try {
+                try {   
+
             
                     const resp = await axios.put(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/bulk`, 
                     [ 
-                        { key: key,
-                        value: value,
-                        metadata: JSON.stringify(metadata)
+                        {   
+                            key: key,
+                            value: value,
+                            metadata: metadata
                         }
                     ],
-                    {headers: this.headersObj})
+                    { headers: this.headersObj });
 
                     return resp.data;
                 }
@@ -115,7 +117,7 @@ const axios = require('axios');
                     
                     const resp = await axios.put(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/bulk`, 
                     keyValueArr,
-                    {headers: this.headersObj})
+                    { headers: this.headersObj });
 
                     return resp.data;
                 }
@@ -130,7 +132,7 @@ const axios = require('axios');
 
                     const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces/${namespace_id}/values/${key}`, 
                     
-                    {headers: this.headersObj})
+                    { headers: this.headersObj });
 
                     return resp.data;
                 }
@@ -168,19 +170,6 @@ const axios = require('axios');
                     return err.response.data;
                 }   
             }
-
-            
-
         }
 
 module.exports = KVClient;
-
-
-
-
-
-
-
-
-
-// https://api.cloudflare.com/client/v4/accounts/fe71379a46f04581143516878e5da3e5/storage/kv/namespaces
