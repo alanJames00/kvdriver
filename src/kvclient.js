@@ -54,6 +54,17 @@ const axios = require('axios');
 
             // List Namespaces
 
+
+            /**
+                 * Asynchronously retrieves an array of all KV namespaces under the Cloudflare account.
+                 *
+                 * @async
+                 * @function
+                 * @returns {Promise<Array<string>>} A Promise that resolves to an array of namespace names.
+                 * @throws {Error} If an error occurs during the API request.
+                 * }
+            */
+
             async ListNameSpaces() {
                 const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces`, { headers: this.headersObj });
                 
