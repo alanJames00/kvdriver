@@ -1,2 +1,4 @@
 .env
 node_modules
+src/application_test_file
+.npmignore
