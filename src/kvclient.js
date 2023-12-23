@@ -148,6 +148,21 @@ const axios = require('axios');
                 }
             }
 
+
+            /**
+                 * Asynchronously puts multiple key-value pairs into a Cloudflare Key-Value namespace in bulk.
+                 *
+                 * @async
+                 * @function
+                 * @param {string} namespace_id - The ID of the namespace where the key-value pairs will be stored.
+                 * @param {Array<Object>} keyValueArr - An array of objects representing key-value pairs.
+                 *   Each object should have properties 'key', 'value', and 'metadata'.
+                 * @returns {Promise<Object>} A Promise that resolves to the result of the bulk operation.
+                 *   If successful, the result contains information about the operation.
+                 *   If unsuccessful, the result contains an error message and details about the failure.
+                 * @throws {Error} If an error occurs during the API request.
+                 * }
+             */
             async putKeyValueBulk(namespace_id, keyValueArr) {
 
                 try {
