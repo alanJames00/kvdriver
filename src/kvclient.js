@@ -53,8 +53,6 @@ const axios = require('axios');
             }
 
             // List Namespaces
-
-
             /**
                  * Asynchronously retrieves an array of all KV namespaces under the Cloudflare account.
                  *
@@ -64,7 +62,6 @@ const axios = require('axios');
                  * @throws {Error} If an error occurs during the API request.
                  * }
             */
-
             async ListNameSpaces() {
                 const resp = await axios.get(`https://api.cloudflare.com/client/v4/accounts/${this.accountID}/storage/kv/namespaces`, { headers: this.headersObj });
                 
@@ -72,6 +69,19 @@ const axios = require('axios');
                 return resp.data.result;
             }
 
+
+            /**
+                * Asynchronously creates a new namespace under the Cloudflare account.
+                *
+                * @async
+                * @function
+                * @param {string} nameSpaceTitle - The title of the new namespace.
+                * @returns {Promise<Object>} A Promise that resolves to the result of the namespace creation.
+                *   If successful, the result contains information about the new namespace.
+                *   If unsuccessful, the result contains an error message and details about the failure.
+                * @throws {Error} If an error occurs during the API request.
+                * }
+            */
             async CreateNameSpace(nameSpaceTitle) {
 
                 try {
