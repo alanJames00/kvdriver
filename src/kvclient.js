@@ -179,6 +179,19 @@ const axios = require('axios');
 
             }
 
+            /**
+                * Asynchronously retrieves the value associated with a key from a Cloudflare Key-Value namespace.
+                *
+                * @async
+                * @function
+                * @param {string} namespace_id - The ID of the namespace where the key-value pair is stored.
+                * @param {string} key - The key for which to retrieve the value.
+                * @returns {Promise<Object>} A Promise that resolves to the result of the operation.
+                *   If successful, the result contains the value associated with the key.
+                *   If unsuccessful, the result contains an error message and details about the failure.
+                * @throws {Error} If an error occurs during the API request.
+                * }
+            */            
             async getValue(namespace_id, key) {
                 try {
 
@@ -193,6 +206,16 @@ const axios = require('axios');
                 }
             }
 
+            /**
+                * Asynchronously retrieves a list of keys from a Cloudflare Key-Value namespace.
+                *
+                * @async
+                * @function
+                * @param {string} namespace_id - The ID of the namespace for which to list keys.
+                * @returns {Promise<Array<string>>} A Promise that resolves to an array of keys in the namespace.
+                * @throws {Error} If an error occurs during the API request.
+                *}
+            */
             async listNamespaceKeys(namespace_id) {
                 try {
 
@@ -208,6 +231,19 @@ const axios = require('axios');
                 }
             }
 
+            /**
+            * Asynchronously deletes a key-value pair from a Cloudflare Key-Value namespace.
+            *
+            * @async
+            * @function
+            * @param {string} namespace_id - The ID of the namespace from which to delete the key-value pair.
+            * @param {string} key - The key of the key-value pair to be deleted.
+            * @returns {Promise<Object>} A Promise that resolves to the result of the delete operation.
+            *   If successful, the result contains information about the operation.
+            *   If unsuccessful, the result contains an error message and details about the failure.
+            * @throws {Error} If an error occurs during the API request.
+            * }
+        */
             async deleteKeyValue(namespace_id, key) {
                 try {
 
