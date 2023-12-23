@@ -110,6 +110,22 @@ const axios = require('axios');
                 }
             }
 
+
+            /**
+                * Asynchronously puts a key-value pair into a Cloudflare Key-Value namespace.
+                *
+                * @async
+                * @function
+                * @param {string} namespace_id - The ID of the namespace where the key-value pair will be stored.
+                * @param {string} key - The key for the key-value pair.
+                * @param {string} value - The value for the key-value pair.
+                * @param {string} metadata - Additional metadata associated with the key-value pair. The metadata should be stringified JS Object.
+                * @returns {Promise<Object>} A Promise that resolves to the result of the operation.
+                *   If successful, the result contains information about the operation.
+                *   If unsuccessful, the result contains an error message and details about the failure.
+                * @throws {Error} If an error occurs during the API request.
+                * }
+            */
             async putKeyValue(namespace_id, key, value, metadata) {
 
                 try {   
