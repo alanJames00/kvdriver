@@ -3,9 +3,14 @@ An npm package providing a unofficial driver for Cloudflare Key-Value (KV) stora
 
 ## Getting Started
 
+Install the kvdriver npm package by running 
+```sh
+npm i kvdriver
+```
+
 Require the KVClient Class in the your project.
 ```js
-    const KVClient = require('./kvclient');
+const KVClient = require('./kvclient');
 
 ```
 
